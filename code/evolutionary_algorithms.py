@@ -2,8 +2,8 @@ import time
 
 import numpy as np
 
-from code.constants import DOMAIN
-from plots import contour_plot, es_plot, sigma_plot
+from .constants import DOMAIN
+from .plots import contour_plot, es_plot, sigma_plot
 
 
 def es(
