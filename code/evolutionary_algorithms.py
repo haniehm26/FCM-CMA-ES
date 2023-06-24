@@ -2,7 +2,7 @@ import time
 
 import numpy as np
 
-from constants import DOMAIN
+from code.constants import DOMAIN
 from plots import contour_plot, es_plot, sigma_plot
 
 

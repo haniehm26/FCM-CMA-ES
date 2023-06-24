@@ -9,7 +9,7 @@ from typing import Optional
 from pydantic import BaseModel, Extra, Field, validate_arguments
 
 from plots import visualize_fcm_result
-from constants import DATASET_N_CLUSTERS, DATASET_DIMENSION, DATASET_PATH, DATASET_LABELS_PATH
+from code.constants import DATASET_N_CLUSTERS, DATASET_DIMENSION, DATASET_PATH, DATASET_LABELS_PATH
 
 
 class FCM(BaseModel):

@@ -1,8 +1,8 @@
 import numpy as np
 from flask import Flask, jsonify, render_template, request
 
-from constants import DOMAIN, OBJECTIVE_FUNCTIONS
-from evolutionary_algorithms import cma, es
+from code.constants import DOMAIN, OBJECTIVE_FUNCTIONS
+from code.evolutionary_algorithms import cma, es
 from fcm import call_fcm, call_fcm_cma
 
 app = Flask(__name__)
