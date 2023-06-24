@@ -55,6 +55,6 @@ DATASET_DIMENSION = {
     "MySet2": 2,
 }
 
-DATASET_PATH = "..static/dataset/FCPS/Sets/"
+DATASET_PATH = "D:/Uni/Term 9/Final Project/Webpage/static/dataset/FCPS/Sets/"
 
-DATASET_LABELS_PATH = "..static/dataset/FCPS/Labels/"
+DATASET_LABELS_PATH = "D:/Uni/Term 9/Final Project/Webpage/static/dataset/FCPS/Labels/"
