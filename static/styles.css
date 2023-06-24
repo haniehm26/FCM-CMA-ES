@@ -1,0 +1,56 @@
+.line-container {
+    position: relative;
+    height: 5px;
+    width: 300px;
+    background-color: #ccc;
+    margin-top: 10px;
+}
+
+.toggle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #333;
+    cursor: pointer;
+    z-index: 0;
+}
+
+.start-toggle {
+    left: 0;
+}
+
+.end-toggle {
+    right: -10px;
+}
+
+.movable-button {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 20px;
+    background-color: #333;
+    cursor: move;
+    z-index: 1;
+}
+
+.current-value {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+table {
+    border-collapse: collapse;
+    width: 20%;
+}
+
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
