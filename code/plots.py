@@ -79,7 +79,7 @@ def sigma_plot(sigma, generation, d, objective_function):
 
 
 def visualize_fcm_result(dataset, dataset_clusters, label, dimension, is_real_label):
-    fig = plt.figure(figsize=(5, 5)) if dimension == 3 else plt.figure(figsize=(4, 4))
+    fig = plt.figure(figsize=(6, 6))
     projection = "3d" if dimension == 3 else None
 
     title = f"Real labels, clusters={dataset_clusters}" if is_real_label else f"Predicted labels"
