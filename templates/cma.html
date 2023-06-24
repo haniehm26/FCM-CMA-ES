@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CMA-ES Algorithm</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+
+<body>
+    <form id="form" action="/submit" method="post">
+        <label for="dimension-line-container">Dimension:</label>
+        <div id="dimension-line-container" class="line-container">
+            <div id="dimension-start-toggle" class="toggle start-toggle"></div>
+            <div id="dimension-movable-button" class="movable-button">
+                <span id="dimension-current-value" class="current-value">2</span>
+            </div>
+            <div id="dimension-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="benchmark-function">Benchmark function:</label>
+        <select id="benchmark-function" name="benchmark-function">
+            <option value="sphere">Sphere</option>
+            <option value="rastrigin">Rastrigin</option>
+            <option value="ackley">Ackley</option>
+        </select>
+
+        <input type="submit" value="Submit">
+        <div id="loading-indicator" style="display: none;">Calculating...</div>
+    </form>
+    </br>
+
+    <div id="table-container" style="display: none;">
+        <table>
+            <tr>
+                <td>Generation Size</td>
+                <td id="n-generation">{{ n_generation }}</td>
+            </tr>
+            <tr>
+                <td>Offspring Size</td>
+                <td id="n-offspring">{{ n_offspring }}</td>
+            </tr>
+            <tr>
+                <td>Parent Size</td>
+                <td id="n-parent">{{ n_parent }}</td>
+            </tr>
+            <tr>
+                <td>X</td>
+                <td id="X">{{ X }}</td>
+            </tr>
+            <tr>
+                <td>y</td>
+                <td id="y">{{ y }}</td>
+            </tr>
+            <tr>
+                <td>Execution Time (sec)</td>
+                <td id="exec-time">{{ exec_time }}</td>
+            </tr>
+        </table>
+    </div>
+    </br>
+
+    <div id="img-container" style="display: none;"></div>
+
+    <script src="../static/cma.js"></script>
+</body>
+
+</html>
