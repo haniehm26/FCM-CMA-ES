@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Evolution Strategy Algorithms</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+
+<body>
+    <form id="form" action="/submit" method="post">
+        <label for="dimension-line-container">Dimension:</label>
+        <div id="dimension-line-container" class="line-container">
+            <div id="dimension-start-toggle" class="toggle start-toggle"></div>
+            <div id="dimension-movable-button" class="movable-button">
+                <span id="dimension-current-value" class="current-value">2</span>
+            </div>
+            <div id="dimension-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="generation-size-line-container">Generation size:</label>
+        <div id="generation-size-line-container" class="line-container">
+            <div id="generation-size-start-toggle" class="toggle start-toggle"></div>
+            <div id="generation-size-movable-button" class="movable-button">
+                <span id="generation-size-current-value" class="current-value">100</span>
+            </div>
+            <div id="generation-size-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="offspring-size-line-container">Offspring size (ʎ):</label>
+        <div id="offspring-size-line-container" class="line-container">
+            <div id="offspring-size-start-toggle" class="toggle start-toggle"></div>
+            <div id="offspring-size-movable-button" class="movable-button">
+                <span id="offspring-size-current-value" class="current-value">10</span>
+            </div>
+            <div id="offspring-size-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="parent-size-line-container">Parent size (µ):</label>
+        <div id="parent-size-line-container" class="line-container">
+            <div id="parent-size-start-toggle" class="toggle start-toggle"></div>
+            <div id="parent-size-movable-button" class="movable-button">
+                <span id="parent-size-current-value" class="current-value">10</span>
+            </div>
+            <div id="parent-size-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="step-size-line-container">Step size (σ):</label>
+        <div id="step-size-line-container" class="line-container">
+            <div id="step-size-start-toggle" class="toggle start-toggle"></div>
+            <div id="step-size-movable-button" class="movable-button">
+                <span id="step-size-current-value" class="current-value">0.01</span>
+            </div>
+            <div id="step-size-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="survivor-selection">Survivor selection:</label>
+        <select id="survivor-selection" name="survivor-selection">
+            <option value="comma">(ʎ, µ)</option>
+            <option value="plus">(ʎ + µ)</option>
+        </select>
+
+        <label for="benchmark-function">Benchmark function:</label>
+        <select id="benchmark-function" name="benchmark-function">
+            <option value="sphere">Sphere</option>
+            <option value="rastrigin">Rastrigin</option>
+            <option value="ackley">Ackley</option>
+        </select>
+
+        <input type="submit" value="Submit">
+        <div id="loading-indicator" style="display: none;">Calculating...</div>
+        <div id="error-indicator" style="display: none;">LAMBDA and MU must have a divisible relationship.</div>
+    </form>
+    </br>
+
+    <div id="table-container" style="display: none;">
+        <table>
+            <tr>
+                <td>X</td>
+                <td id="X">{{ X }}</td>
+            </tr>
+            <tr>
+                <td>y</td>
+                <td id="y">{{ y }}</td>
+            </tr>
+            <tr>
+                <td>Execution Time (sec)</td>
+                <td id="exec-time">{{ exec_time }}</td>
+            </tr>
+        </table>
+    </div>
+    </br>
+
+    <div id="img-container" style="display: none;"></div>
+
+    <script src="../static/es.js"></script>
+</body>
+
+</html>
