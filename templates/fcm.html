@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fuzzy C-Means Algorithm</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+
+<body>
+    <form id="form" action="/submit" method="post">
+        <label for="n-iter-line-container">Number of iterations:</label>
+        <div id="n-iter-line-container" class="line-container">
+            <div id="n-iter-start-toggle" class="toggle start-toggle"></div>
+            <div id="n-iter-movable-button" class="movable-button">
+                <span id="n-iter-current-value" class="current-value">100</span>
+            </div>
+            <div id="n-iter-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="m-line-container">Parameter m:</label>
+        <div id="m-line-container" class="line-container">
+            <div id="m-start-toggle" class="toggle start-toggle"></div>
+            <div id="m-movable-button" class="movable-button">
+                <span id="m-current-value" class="current-value">2</span>
+            </div>
+            <div id="m-end-toggle" class="toggle end-toggle"></div>
+        </div>
+        </br></br>
+
+        <label for="dataset">Dataset:</label>
+        <select id="dataset" name="dataset">
+            <option value="Hepta">Hepta</option>
+            <option value="Tetra">Tetra</option>
+            <option value="Chainlink">Chainlink</option>
+            <option value="Atom">Atom</option>
+            <option value="GolfBall">Golf Ball</option>
+            <option value="Lsun">Lsun</option>
+            <option value="EngyTime">Engy Time</option>
+            <option value="Target">Target</option>
+            <option value="TwoDiamonds">Two Diamonds</option>
+            <option value="WingNut">Wing Nut</option>
+            <option value="MySet1">My Set 1</option>
+            <option value="MySet2">My Set 2</option>
+        </select>
+
+        <input type="submit" value="Submit">
+        <div id="loading-indicator" style="display: none;">Calculating...</div>
+    </form>
+    </br>
+
+    <div id="table-container" style="display: none;">
+        <table>
+            <tr>
+                <td>Rand Index</td>
+                <td id="rand-index">{{ rand_index }}</td>
+            </tr>
+            <tr>
+                <td>Fc</td>
+                <td id="fc">{{ fc }}</td>
+            </tr>
+            <tr>
+                <td>Hc</td>
+                <td id="hc">{{ hc }}</td>
+            </tr>
+            <tr>
+                <td>Execution Time (sec)</td>
+                <td id="exec-time">{{ exec_time }}</td>
+            </tr>
+        </table>
+    </div>
+    </br>
+
+    <div id="img-container" style="display: none;"></div>
+
+    <script src="../static/fcm.js"></script>
+</body>
+
+</html>
