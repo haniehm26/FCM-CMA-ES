@@ -158,7 +158,6 @@ function sendDataToServer(data) {
 }
 
 // Call the functions
-initializeMovableButton("n-iter-line-container", "n-iter-movable-button", "n-iter-current-value", "n-iter-start-toggle", "n-iter-end-toggle", 100, 10000, false, 50);
 initializeMovableButton("m-line-container", "m-movable-button", "m-current-value", "m-start-toggle", "m-end-toggle", 2, 101, true, 0.5);
 
 document.getElementById("form").addEventListener("submit", function (event) {
@@ -176,13 +175,11 @@ document.getElementById("form").addEventListener("submit", function (event) {
     parentElement.style.display = "none";
 
     // Retrieve form data
-    var nIter = document.getElementById("n-iter-current-value").textContent;
     var m = document.getElementById("m-current-value").textContent;
     var l = document.getElementById("l-param").value;
     var dataset = document.getElementById("dataset").value;
 
     var data = {
-        n_iter: nIter,
         m: m,
         l: l,
         dataset_name: dataset

@@ -111,14 +111,13 @@ def get_fcm_cma():
 def submit_fcm_cma():
     data = request.get_json()
 
-    n_iter = int(data["n_iter"])  # [100, 10000]
     m = float(data["m"])  # [2, 101]
     l = data["l"]  # zero, linear, success_rule
     dataset_name = data[
         "dataset_name"
     ]  # Hepta, Tetra, Chainlink, Atom, GolfBall, Lsun, EngyTime, Target, TwoDiamonds, WingNut, MySet1, MySet2
 
-    table_data, chart_data = call_fcm_cma(n_iter, m, l, dataset_name)
+    table_data, chart_data = call_fcm_cma(m, l, dataset_name)
 
     result = {
         "table_data": table_data,
