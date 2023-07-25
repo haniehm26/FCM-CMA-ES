@@ -69,7 +69,7 @@ def fcm_page():
     elif request.method == "POST":
         data = request.get_json()
         n_iter = int(data["n_iter"])  # [100, 10000]
-        m = float(data["m"])  # [1, 10]
+        m = float(data["m"])  # [1.5, 10]
         dataset_name = data["dataset_name"]
         table_data, chart_data = call_fcm(n_iter, m, dataset_name)
         result = {
@@ -85,7 +85,7 @@ def fcm_cma_page():
         return render_template("fcm-cma.html")
     elif request.method == "POST":
         data = request.get_json()
-        m = float(data["m"])  # [1, 10]
+        m = float(data["m"])  # [1.5, 10]
         l = data["l"]  # zero, linear, success_rule
         dataset_name = data["dataset_name"]
         table_data, chart_data = call_fcm_cma(m, l, dataset_name)
