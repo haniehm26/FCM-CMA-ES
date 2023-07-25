@@ -1,18 +1,3 @@
-function showChart(data) {
-    displayImage(data.dataset_png);
-    displayImage(data.algorithm_png);
-    displayImage(data.cost_function);
-    displayImage(data.l_param);
-}
-
-function displayImage(base64Data) {
-    const imageContainer = document.getElementById('img-container');
-    const imageElement = document.createElement('img');
-    imageElement.src = 'data:image/png;base64,' + base64Data;
-    imageContainer.appendChild(imageElement);
-    imageContainer.style.display = "block"
-}
-
 function showTable(data) {
     // Show the table container
     document.getElementById("table-container").style.display = "block";
