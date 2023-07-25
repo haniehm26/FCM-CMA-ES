@@ -1,3 +1,4 @@
+import os
 import numpy as np
 
 
@@ -55,6 +56,7 @@ DATASET_DIMENSION = {
     "MySet2": 2,
 }
 
-DATASET_PATH = "D:/Uni/Term 9/Final Project/Webpage/static/dataset/FCPS/Sets/"
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
-DATASET_LABELS_PATH = "D:/Uni/Term 9/Final Project/Webpage/static/dataset/FCPS/Labels/"
+DATASET_PATH = PROJECT_ROOT + "/static/dataset/FCPS/Sets/"
+DATASET_LABELS_PATH = PROJECT_ROOT + "/static/dataset/FCPS/Labels/"
