@@ -34,7 +34,6 @@ function sendDataToServer(data, dimension) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/cma", true);
     xhr.setRequestHeader("Content-Type", "application/json");
-
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             // Hide loading indicator
@@ -52,35 +51,28 @@ function sendDataToServer(data, dimension) {
             }
         }
     };
-
     xhr.send(JSON.stringify(data));
 }
 
 // Call the functions
-
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault(); // Prevent form submission
-
     // Display loading indicator
     document.getElementById("loading-indicator").style.display = "block";
     document.getElementById("table-container").style.display = "none";
-
     const parentElement = document.getElementById("img-container");
     // Remove all children
     while (parentElement.firstChild) {
         parentElement.firstChild.remove();
     }
     parentElement.style.display = "none";
-
     // Retrieve form data
     var dimension = document.getElementById("dimension").value;
     var benchmarkFunction = document.getElementById("benchmark-function").value;
-
     var data = {
         dimension: dimension,
         benchmark_function: benchmarkFunction
     };
-
     // Send the data to the server
     sendDataToServer(data, dimension);
 });

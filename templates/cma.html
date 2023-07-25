@@ -7,7 +7,6 @@
             oninput="this.nextElementSibling.value = this.value">
         <output class="form-text"></output>
     </div>
-
     <div class="form-group">
         <label for="benchmark-function">Benchmark function</label>
         <select id="benchmark-function" name="benchmark-function" class="form-select">
@@ -17,14 +16,12 @@
         </select>
     </div>
     <br>
-
     <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-
     <div id="loading-indicator" style="display: none;">Calculating...</div>
 </form>
 </br>
-<div id="table-container" style="display: none;"">
-    <table class=" table table-bordered text-center">
+<div id="table-container" style="display: none;">
+    <table class="table table-bordered text-center">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Generation Size</th>
@@ -42,14 +39,12 @@
             <td id="n-parent">{{ n_parent }}</td>
             <td id="X">{{ X }}</td>
             <td id="y">{{ y }}</td>
-
             <td id="exec-time">{{ exec_time }}</td>
         </tr>
     </tbody>
     </table>
 </div>
 </br>
-
 <div id="img-container" style="display: none;"></div>
 <script src="../static/cma.js"></script>
 {% endblock %}
