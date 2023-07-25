@@ -63,7 +63,7 @@ document.getElementById("submit").addEventListener("click", function (event) {
     }
     parentElement.style.display = "none";
     // Retrieve form data
-    var m = document.getElementById("m-current-value").textContent;
+    var m = document.getElementById("m-param").value;
     var l = document.getElementById("l-param").value;
     var dataset = document.getElementById("dataset").value;
     var data = {

@@ -59,8 +59,8 @@ document.getElementById("submit").addEventListener("click", function (event) {
     }
     parentElement.style.display = "none";
     // Retrieve form data
-    var nIter = document.getElementById("n-iter-current-value").textContent;
-    var m = document.getElementById("m-current-value").textContent;
+    var nIter = document.getElementById("n-iter").value;
+    var m = document.getElementById("m-param").value;
     var dataset = document.getElementById("dataset").value;
     var data = {
         n_iter: nIter,
