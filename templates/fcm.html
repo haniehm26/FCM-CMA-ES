@@ -1,35 +1,29 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Fuzzy C-Means Algorithm</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css">
-</head>
-
-<body>
-    <form id="form" action="/submit" method="post">
-        <label for="n-iter-line-container">Number of iterations:</label>
-        <div id="n-iter-line-container" class="line-container">
-            <div id="n-iter-start-toggle" class="toggle start-toggle"></div>
-            <div id="n-iter-movable-button" class="movable-button">
-                <span id="n-iter-current-value" class="current-value">100</span>
-            </div>
-            <div id="n-iter-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="m-line-container">Parameter m:</label>
-        <div id="m-line-container" class="line-container">
-            <div id="m-start-toggle" class="toggle start-toggle"></div>
-            <div id="m-movable-button" class="movable-button">
-                <span id="m-current-value" class="current-value">2</span>
-            </div>
-            <div id="m-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="dataset">Dataset:</label>
-        <select id="dataset" name="dataset">
+{% extends 'base.html' %}
+{% block main %}
+<form id="form" action="/submit" method="post" class="form-inline">
+    <div class="form-group">
+        <label for="n-iter">Number of Iterations</label>
+        <input type="range" class="form-range" id="n-iter" name="n-iter" min="100" max="1000" step="50"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="m-param">Parameter m</label>
+        <input type="range" class="form-range" id="m-param" name="m-param" min="1" max="10" step="0.5"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="l-param">Parameter L</label>
+        <select id="l-param" name="l-param" class="form-select">
+            <option value="zero">zero</option>
+            <option value="linear">linear</option>
+            <option value="success_rule">1/5 success rule</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="dataset">Dataset</label>
+        <select id="dataset" name="dataset" class="form-select">
             <option value="Hepta">Hepta</option>
             <option value="Tetra">Tetra</option>
             <option value="Chainlink">Chainlink</option>
@@ -43,37 +37,33 @@
             <option value="MySet1">My Set 1</option>
             <option value="MySet2">My Set 2</option>
         </select>
-
-        <input type="submit" value="Submit">
-        <div id="loading-indicator" style="display: none;">Calculating...</div>
-    </form>
-    </br>
-
-    <div id="table-container" style="display: none;">
-        <table>
-            <tr>
-                <td>Rand Index</td>
-                <td id="rand-index">{{ rand_index }}</td>
-            </tr>
-            <tr>
-                <td>Fc</td>
-                <td id="fc">{{ fc }}</td>
-            </tr>
-            <tr>
-                <td>Hc</td>
-                <td id="hc">{{ hc }}</td>
-            </tr>
-            <tr>
-                <td>Execution Time (sec)</td>
-                <td id="exec-time">{{ exec_time }}</td>
-            </tr>
-        </table>
     </div>
-    </br>
-
-    <div id="img-container" style="display: none;"></div>
-
-    <script src="../static/fcm.js"></script>
-</body>
-
-</html>
+    <br>
+    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+    <div id="loading-indicator" style="display: none;">Calculating...</div>
+</form>
+</br>
+<div id="table-container" style="display: none;">
+    <table class="table table-bordered text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Rand Index</th>
+            <th scope="col">Fc</th>
+            <th scope="col">Hc</th>
+            <th scope="col">Execution Time (sec)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="rand-index">{{ rand_index }}</td>
+            <td id="fc">{{ fc }}</td>
+            <td id="hc">{{ hc }}</td>
+            <td id="exec-time">{{ exec_time }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</br>
+<div id="img-container" style="display: none;"></div>
+<script src="../static/fcm.js"></script>
+{% endblock %}
