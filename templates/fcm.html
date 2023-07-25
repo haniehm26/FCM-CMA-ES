@@ -3,13 +3,13 @@
 <form id="form" action="/submit" method="post" class="form-inline">
     <div class="form-group">
         <label for="n-iter">Number of Iterations</label>
-        <input type="range" class="form-range" id="n-iter" name="n-iter" min="100" max="1000" step="50"
+        <input type="range" class="form-range" id="n-iter" name="n-iter" min="100" max="1000" step="50" value="100"
             oninput="this.nextElementSibling.value = this.value">
         <output class="form-text"></output>
     </div>
     <div class="form-group">
         <label for="m-param">Parameter M</label>
-        <input type="range" class="form-range" id="m-param" name="m-param" min="1.5" max="10" step="0.5"
+        <input type="range" class="form-range" id="m-param" name="m-param" min="1.5" max="10" step="0.5" value="1.5"
             oninput="this.nextElementSibling.value = this.value">
         <output class="form-text"></output>
     </div>
