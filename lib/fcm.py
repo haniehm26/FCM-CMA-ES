@@ -19,7 +19,7 @@ class FCM(BaseModel):
     max_iter: int = Field(150, ge=1, le=1000)
     error: float = Field(1e-5, ge=1e-9)
     random_state: Optional[int] = None
-    trained: bool = Field(False, const=True)
+    trained: bool = Field(False, Literal=True)
 
     class Config:
         extra = Extra.allow
@@ -198,7 +198,7 @@ class FCM_CMA(BaseModel):
     n_clusters: int = Field(5, ge=1, le=100)
     m: float = Field(2.0, ge=1.0)
     random_state: Optional[int] = None
-    trained: bool = Field(False, const=True)
+    trained: bool = Field(False, Literal=True)
 
     class Config:
         extra = Extra.allow

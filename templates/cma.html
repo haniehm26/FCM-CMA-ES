@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% block main %}
+<form id="form" action="/submit" method="post" class="form-inline">
+    <div class="form-group">
+        <label for="dimension">Dimension</label>
+        <input type="range" class="form-range" id="dimension" name="dimension" min="2" max="32"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
 
-<head>
-    <title>CMA-ES Algorithm</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css">
-</head>
-
-<body>
-    <form id="form" action="/submit" method="post">
-        <label for="dimension-line-container">Dimension:</label>
-        <div id="dimension-line-container" class="line-container">
-            <div id="dimension-start-toggle" class="toggle start-toggle"></div>
-            <div id="dimension-movable-button" class="movable-button">
-                <span id="dimension-current-value" class="current-value">2</span>
-            </div>
-            <div id="dimension-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="benchmark-function">Benchmark function:</label>
-        <select id="benchmark-function" name="benchmark-function">
+    <div class="form-group">
+        <label for="benchmark-function">Benchmark function</label>
+        <select id="benchmark-function" name="benchmark-function" class="form-select">
             <option value="sphere">Sphere</option>
             <option value="rastrigin">Rastrigin</option>
             <option value="ackley">Ackley</option>
         </select>
-
-        <input type="submit" value="Submit">
-        <div id="loading-indicator" style="display: none;">Calculating...</div>
-    </form>
-    </br>
-
-    <div id="table-container" style="display: none;">
-        <table>
-            <tr>
-                <td>Generation Size</td>
-                <td id="n-generation">{{ n_generation }}</td>
-            </tr>
-            <tr>
-                <td>Offspring Size</td>
-                <td id="n-offspring">{{ n_offspring }}</td>
-            </tr>
-            <tr>
-                <td>Parent Size</td>
-                <td id="n-parent">{{ n_parent }}</td>
-            </tr>
-            <tr>
-                <td>X</td>
-                <td id="X">{{ X }}</td>
-            </tr>
-            <tr>
-                <td>y</td>
-                <td id="y">{{ y }}</td>
-            </tr>
-            <tr>
-                <td>Execution Time (sec)</td>
-                <td id="exec-time">{{ exec_time }}</td>
-            </tr>
-        </table>
     </div>
-    </br>
+    <br>
 
-    <div id="img-container" style="display: none;"></div>
+    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
 
-    <script src="../static/cma.js"></script>
-</body>
+    <div id="loading-indicator" style="display: none;">Calculating...</div>
+</form>
+</br>
+<div id="table-container" style="display: none;"">
+    <table class=" table table-bordered text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Generation Size</th>
+            <th scope="col">Offspring Size</th>
+            <th scope="col">Parent Size</th>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">Execution Time (sec)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="n-generation">{{ n_generation }}</td>
+            <td id="n-offspring">{{ n_offspring }}</td>
+            <td id="n-parent">{{ n_parent }}</td>
+            <td id="X">{{ X }}</td>
+            <td id="y">{{ y }}</td>
 
-</html>
+            <td id="exec-time">{{ exec_time }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</br>
+
+<div id="img-container" style="display: none;"></div>
+<script src="../static/cma.js"></script>
+{% endblock %}

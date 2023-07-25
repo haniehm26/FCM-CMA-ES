@@ -1,81 +1,3 @@
-function initializeMovableButton(lineContainerId, movableButtonId, currentValueId, startToggleId, endToggleId, minValue, maxValue, stepSize) {
-    var movableButton = document.getElementById(movableButtonId);
-    var lineContainer = document.getElementById(lineContainerId);
-    var valueDisplay = document.getElementById(currentValueId);
-    var startToggle = document.getElementById(startToggleId);
-    var endToggle = document.getElementById(endToggleId);
-    var lineContainerRect = lineContainer.getBoundingClientRect();
-    var isDragging = false;
-
-    movableButton.addEventListener("mousedown", startDragging);
-    document.addEventListener("mousemove", moveButton);
-    document.addEventListener("mouseup", stopDragging);
-
-    startToggle.addEventListener("click", moveOneUnitLeft);
-    endToggle.addEventListener("click", moveOneUnitRight);
-
-    function startDragging(event) {
-        isDragging = true;
-    }
-
-    function moveButton(event) {
-        if (!isDragging) return;
-
-        var mouseX = event.clientX - lineContainerRect.left;
-        var maxX = lineContainerRect.width;
-
-        var positionRatio = mouseX / maxX; // Calculate the ratio of mouse position to the maximum position
-
-        var value = positionRatio * (maxValue - minValue) + minValue; // Calculate the corresponding value
-
-        var roundedValue;
-
-        roundedValue = Math.round(value / stepSize) * stepSize; // Round the value to the nearest step
-
-        // Check if the rounded value exceeds the maxValue and adjust if necessary
-        if (roundedValue > maxValue) {
-            roundedValue = maxValue;
-        }
-
-        if (roundedValue < minValue) {
-            roundedValue = minValue;
-        }
-
-        var newPosition = (roundedValue - minValue) / (maxValue - minValue) * maxX; // Calculate the new position based on the rounded value
-
-        movableButton.style.left = newPosition + "px";
-        valueDisplay.textContent = roundedValue;
-    }
-
-    function stopDragging() {
-        isDragging = false;
-    }
-
-    function moveOneUnitLeft() {
-        var currentPosition = parseFloat(movableButton.style.left) || 0;
-
-        var step = (lineContainerRect.width / (maxValue - minValue)) * stepSize;
-
-        var newPosition = Math.max(0, currentPosition - step);
-        movableButton.style.left = newPosition + "px";
-
-        var value = Math.round((newPosition / lineContainerRect.width) * (maxValue - minValue) + minValue);
-        valueDisplay.textContent = value;
-    }
-
-    function moveOneUnitRight() {
-        var currentPosition = parseFloat(movableButton.style.left) || 0;
-
-        var step = (lineContainerRect.width / (maxValue - minValue)) * stepSize;
-
-        var newPosition = Math.min(lineContainerRect.width, currentPosition + step);
-        movableButton.style.left = newPosition + "px";
-
-        var value = Math.round((newPosition / lineContainerRect.width) * (maxValue - minValue) + minValue);
-        valueDisplay.textContent = value;
-    }
-}
-
 function showChart(data) {
     displayImage(data.cma_contour);
     displayImage(data.sigma_chart);
@@ -135,9 +57,8 @@ function sendDataToServer(data, dimension) {
 }
 
 // Call the functions
-initializeMovableButton("dimension-line-container", "dimension-movable-button", "dimension-current-value", "dimension-start-toggle", "dimension-end-toggle", 2, 32, 1);
 
-document.getElementById("form").addEventListener("submit", function (event) {
+document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault(); // Prevent form submission
 
     // Display loading indicator
@@ -152,7 +73,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
     parentElement.style.display = "none";
 
     // Retrieve form data
-    var dimension = document.getElementById("dimension-current-value").textContent;
+    var dimension = document.getElementById("dimension").value;
     var benchmarkFunction = document.getElementById("benchmark-function").value;
 
     var data = {

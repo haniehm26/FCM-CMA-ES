@@ -1,9 +1,9 @@
 import numpy as np
 from flask import Flask, jsonify, render_template, request
 
-from code.constants import DOMAIN, OBJECTIVE_FUNCTIONS
-from code.evolutionary_algorithms import cma, es
-from code.fcm import call_fcm, call_fcm_cma
+from lib.constants import DOMAIN, OBJECTIVE_FUNCTIONS
+from lib.evolutionary_algorithms import cma, es
+from lib.fcm import call_fcm, call_fcm_cma
 
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def home():
 
 @app.route("/es")
 def get_es():
-    return render_template("es.html")
+    return render_template("es.html", title="Evolution Strategy Algorithms")
 
 
 @app.route("/es", methods=["POST"])
@@ -53,7 +53,7 @@ def submit_es():
 
 @app.route("/cma")
 def get_cma():
-    return render_template("cma.html")
+    return render_template("cma.html", title="CMA-ES Algorithm")
 
 
 @app.route("/cma", methods=["POST"])
@@ -128,4 +128,4 @@ def submit_fcm_cma():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
