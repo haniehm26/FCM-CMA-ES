@@ -22,9 +22,9 @@ def es_page():
         generation_size = int(data["generation_size"])  # [100, 10000]
         offspring_size = int(data["offspring_size"])  # [5, 5000]
         parent_size = int(data["parent_size"])  # [5, 5000]
-        step_size = float(data["step_size"])  # [0.01, 1.00]
-        survivor_selection = data["survivor_selection"]  # comma, plus
-        benchmark_function = data["benchmark_function"]  # sphere, rastrigin, ackley
+        step_size = float(data["step_size"])  # [0.1, 1.00]
+        survivor_selection = data["survivor_selection"]
+        benchmark_function = data["benchmark_function"]
         table_data, chart_data = es(
             domain=DOMAIN[benchmark_function],
             objective_function=OBJECTIVE_FUNCTIONS[benchmark_function],
@@ -49,7 +49,7 @@ def cma_page():
     elif request.method == "POST":
         data = request.get_json()
         dimension = int(data["dimension"])  # [2, 32]
-        benchmark_function = data["benchmark_function"]  # sphere, rastrigin, ackley
+        benchmark_function = data["benchmark_function"]
         table_data, chart_data = cma(
             domain=DOMAIN[benchmark_function],
             objective_function=OBJECTIVE_FUNCTIONS[benchmark_function],
@@ -69,10 +69,8 @@ def fcm_page():
     elif request.method == "POST":
         data = request.get_json()
         n_iter = int(data["n_iter"])  # [100, 10000]
-        m = float(data["m"])  # [2, 101]
-        dataset_name = data[
-            "dataset_name"
-        ]  # Hepta, Tetra, Chainlink, Atom, GolfBall, Lsun, EngyTime, Target, TwoDiamonds, WingNut, MySet1, MySet2
+        m = float(data["m"])  # [1, 10]
+        dataset_name = data["dataset_name"]
         table_data, chart_data = call_fcm(n_iter, m, dataset_name)
         result = {
             "table_data": table_data,
@@ -87,11 +85,9 @@ def fcm_cma_page():
         return render_template("fcm-cma.html")
     elif request.method == "POST":
         data = request.get_json()
-        m = float(data["m"])  # [2, 101]
+        m = float(data["m"])  # [1, 10]
         l = data["l"]  # zero, linear, success_rule
-        dataset_name = data[
-            "dataset_name"
-        ]  # Hepta, Tetra, Chainlink, Atom, GolfBall, Lsun, EngyTime, Target, TwoDiamonds, WingNut, MySet1, MySet2
+        dataset_name = data["dataset_name"]
         table_data, chart_data = call_fcm_cma(m, l, dataset_name)
         result = {
             "table_data": table_data,
