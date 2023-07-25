@@ -1,93 +1,76 @@
 {% extends 'base.html' %}
 {% block main %}
-    <form id="form" action="/submit" method="post">
-        <label for="dimension-line-container">Dimension:</label>
-        <div id="dimension-line-container" class="line-container">
-            <div id="dimension-start-toggle" class="toggle start-toggle"></div>
-            <div id="dimension-movable-button" class="movable-button">
-                <span id="dimension-current-value" class="current-value">2</span>
-            </div>
-            <div id="dimension-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="generation-size-line-container">Generation size:</label>
-        <div id="generation-size-line-container" class="line-container">
-            <div id="generation-size-start-toggle" class="toggle start-toggle"></div>
-            <div id="generation-size-movable-button" class="movable-button">
-                <span id="generation-size-current-value" class="current-value">100</span>
-            </div>
-            <div id="generation-size-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="offspring-size-line-container">Offspring size (ʎ):</label>
-        <div id="offspring-size-line-container" class="line-container">
-            <div id="offspring-size-start-toggle" class="toggle start-toggle"></div>
-            <div id="offspring-size-movable-button" class="movable-button">
-                <span id="offspring-size-current-value" class="current-value">10</span>
-            </div>
-            <div id="offspring-size-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="parent-size-line-container">Parent size (µ):</label>
-        <div id="parent-size-line-container" class="line-container">
-            <div id="parent-size-start-toggle" class="toggle start-toggle"></div>
-            <div id="parent-size-movable-button" class="movable-button">
-                <span id="parent-size-current-value" class="current-value">10</span>
-            </div>
-            <div id="parent-size-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="step-size-line-container">Step size (σ):</label>
-        <div id="step-size-line-container" class="line-container">
-            <div id="step-size-start-toggle" class="toggle start-toggle"></div>
-            <div id="step-size-movable-button" class="movable-button">
-                <span id="step-size-current-value" class="current-value">0.01</span>
-            </div>
-            <div id="step-size-end-toggle" class="toggle end-toggle"></div>
-        </div>
-        </br></br>
-
-        <label for="survivor-selection">Survivor selection:</label>
-        <select id="survivor-selection" name="survivor-selection">
-            <option value="comma">(ʎ, µ)</option>
-            <option value="plus">(ʎ + µ)</option>
-        </select>
-
-        <label for="benchmark-function">Benchmark function:</label>
-        <select id="benchmark-function" name="benchmark-function">
+<form id="form" action="/submit" method="post" class="form-inline">
+    <div class="form-group">
+        <label for="dimension">Dimension</label>
+        <input type="range" class="form-range" id="dimension" name="dimension" min="2" max="32"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="generation-size">Generation Size</label>
+        <input type="range" class="form-range" id="generation-size" name="generation-size" min="100" max="10000" step="50"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="offspring-size">Offspring Size (ʎ)</label>
+        <input type="range" class="form-range" id="offspring-size" name="offspring-size" min="10" max="5000" step="10"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="parent-size">Parent Size (µ)</label>
+        <input type="range" class="form-range" id="parent-size" name="parent-size" min="10" max="5000" step="10"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="step-size">Step Size (σ)</label>
+        <input type="range" class="form-range" id="step-size" name="step-size" min="0.1" max="1" step="0.05"
+            oninput="this.nextElementSibling.value = this.value">
+        <output class="form-text"></output>
+    </div>
+    <div class="form-group">
+        <label for="benchmark-function">Benchmark Function</label>
+        <select id="benchmark-function" name="benchmark-function" class="form-select">
             <option value="sphere">Sphere</option>
             <option value="rastrigin">Rastrigin</option>
             <option value="ackley">Ackley</option>
         </select>
-
-        <input type="submit" value="Submit">
-        <div id="loading-indicator" style="display: none;">Calculating...</div>
-        <div id="error-indicator" style="display: none;">LAMBDA and MU must have a divisible relationship.</div>
-    </form>
-    </br>
-
-    <div id="table-container" style="display: none;">
-        <table>
-            <tr>
-                <td>X</td>
-                <td id="X">{{ X }}</td>
-            </tr>
-            <tr>
-                <td>y</td>
-                <td id="y">{{ y }}</td>
-            </tr>
-            <tr>
-                <td>Execution Time (sec)</td>
-                <td id="exec-time">{{ exec_time }}</td>
-            </tr>
-        </table>
     </div>
-    </br>
-
-    <div id="img-container" style="display: none;"></div>
-    <script src="../static/es.js"></script>
+    <div class="form-group">
+        <label for="survivor-selection">Survivor Selection</label>
+        <select id="survivor-selection" name="survivor-selection" class="form-select">
+            <option value="comma">(ʎ, µ)</option>
+            <option value="plus">(ʎ + µ)</option>
+        </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+    <div id="loading-indicator" style="display: none;">Calculating...</div>
+    <div id="error-indicator" style="display: none;">LAMBDA and MU must have a divisible relationship.</div>
+</form>
+</br>
+<div id="table-container" style="display: none;">
+    <table class="table table-bordered text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">Execution Time (sec)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="X">{{ X }}</td>
+            <td id="y">{{ y }}</td>
+            <td id="exec-time">{{ exec_time }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</br>
+<div id="img-container" style="display: none;"></div>
+<script src="../static/es.js"></script>
 {% endblock %}
