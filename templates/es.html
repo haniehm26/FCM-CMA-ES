@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Evolution Strategy Algorithms</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css">
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% block main %}
     <form id="form" action="/submit" method="post">
         <label for="dimension-line-container">Dimension:</label>
         <div id="dimension-line-container" class="line-container">
@@ -96,8 +89,5 @@
     </br>
 
     <div id="img-container" style="display: none;"></div>
-
     <script src="../static/es.js"></script>
-</body>
-
-</html>
+{% endblock %}
