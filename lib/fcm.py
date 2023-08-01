@@ -579,7 +579,14 @@ def call_fcm_cma(m, l, dataset_name):
 
     cost_function = visualize_cost_function(J, cost_value)
 
-    l_param = visualize_cost_function(L, 0)
+    chart_data = {
+        "dataset_png": dataset_png,
+        "cost_function": cost_function,
+        "algorithm_png": algorithm_png,
+    }
+
+    if l != "zero":
+        chart_data["l_param"] = visualize_cost_function(L, 0)
 
     table_data = {
         "rand_index": str(rand_index),
@@ -587,12 +594,6 @@ def call_fcm_cma(m, l, dataset_name):
         "hc": str(hc),
         "cost_value": str(cost_value),
         "exec_time": str(exec_time),
-    }
-    chart_data = {
-        "dataset_png": dataset_png,
-        "algorithm_png": algorithm_png,
-        "cost_function": cost_function,
-        "l_param": l_param,
     }
 
     return table_data, chart_data
